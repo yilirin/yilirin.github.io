@@ -100,13 +100,13 @@
 <meta property="og:url" content="http://yoursite.com/2017/09/25/CNN-in-NLP/index.html">
 <meta property="og:site_name" content="Yili blog">
 <meta property="og:description" content="这周在做用CNN进行文本分类的工作, CNN比RNN训练时快很多, 更适用于GPU并行化计算, 所以看了一些CNN-based的论文, 了解一下在使用CNN做NLP问题时所采用的通用做法以及各自不同的做法. 而看的几篇文章的主要分歧其实是CNN的输入问题.  Using general Embedding1这篇是Yoon Kim在2014年(EMNLP2014)的文章, 应该是比较经典的做法. 其">
-<meta property="og:image" content="http://yoursite.com/2017/09/25/images/kim2014.png">
-<meta property="og:image" content="http://yoursite.com/2017/09/25/images/Kalchbrenner2014.png">
-<meta property="og:updated_time" content="2017-09-25T03:45:23.000Z">
+<meta property="og:image" content="http://yoursite.com/2017/09/25/CNN-in-NLP/kim2014.png">
+<meta property="og:image" content="http://yoursite.com/2017/09/25/CNN-in-NLP/Kalchbrenner2014.png">
+<meta property="og:updated_time" content="2017-09-25T04:09:04.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="CNN in NLP">
 <meta name="twitter:description" content="这周在做用CNN进行文本分类的工作, CNN比RNN训练时快很多, 更适用于GPU并行化计算, 所以看了一些CNN-based的论文, 了解一下在使用CNN做NLP问题时所采用的通用做法以及各自不同的做法. 而看的几篇文章的主要分歧其实是CNN的输入问题.  Using general Embedding1这篇是Yoon Kim在2014年(EMNLP2014)的文章, 应该是比较经典的做法. 其">
-<meta name="twitter:image" content="http://yoursite.com/2017/09/25/images/kim2014.png">
+<meta name="twitter:image" content="http://yoursite.com/2017/09/25/CNN-in-NLP/kim2014.png">
 
 
 
@@ -326,7 +326,11 @@
       
         <p>这周在做用CNN进行文本分类的工作, CNN比RNN训练时快很多, 更适用于GPU并行化计算, 所以看了一些CNN-based的论文, 了解一下在使用CNN做NLP问题时所采用的通用做法以及各自不同的做法. 而看的几篇文章的主要分歧其实是CNN的输入问题.</p>
 <hr>
-<h2 id="Using-general-Embedding"><a href="#Using-general-Embedding" class="headerlink" title="Using general Embedding"></a>Using general Embedding</h2><p><a href="Kim, Y. 2014">1</a>这篇是Yoon Kim在2014年(EMNLP2014)的文章, 应该是比较经典的做法. 其框架如下<br><img src="../images/kim2014.png" alt="kim"><br>输入矩阵的每行是对应词的embedding, 用一个宽度为embedding维度的filter来做卷积, 这也是文本和图像做卷积不同的地方, 也就是文本只关注时间序列上的卷积,不关注单词特征各维度的关系. 文章中选用了高分别为3,4,5三种filter, 每个filter要做100个feature maps, 也就是经过卷积层后得到300个特征向量, 对这些向量分别做max-over-time pooling就得到一个300*1的向量, 然后将这个向量传入全连接层经过softmax就能得到分类的概率结果.<br>在训练上本文使用了SGD, 并对倒数第二层做了dropout.<br>这个模型非常的简洁, 直观, 没有太多的trick, 很有借鉴意义.<br>在这篇文章中, 作者在七个文本分类任务的数据集上做了实验, 结果表明这个很简单的框架就能够和其他复杂的模型相匹敌. 这证明word2vec的universal embedding对于文本分类任务很有用.<br>此外作者还研究了所谓non-static representation. 也就是对于embedding不只是作为输入, 而是作为可以训练的参数. 这样对于不同的任务, embedding会做出相应的调整, 事实上static和non-static的表示是作为不同channel输入的, 最终的结果显示non-static representation会带来一点性能的提升.<br>最后作者在和别人的工作<a href="Kalchbrenner et al., 2014">2</a>对比后, 认为自己的结果比别人差不多的cnn更好的原因是用了更多不同大小的filter和更多的feature map<br>在Kalchbrenner的论文[2]里提出的Dynamic Convolutional Neural Network (DCNN), 使用了两层卷积, 并且采用了动态的k-max pooling.<br><img src="../images/Kalchbrenner2014.png" alt="Kalchbrenner2014"><br>其实这个框架和Kim的框架在大多数任务上都互有胜负, 只是模型不够简洁. 而且filter size只用了一种.</p>
+<h2 id="Using-general-Embedding"><a href="#Using-general-Embedding" class="headerlink" title="Using general Embedding"></a>Using general Embedding</h2><p><a href="Kim, Y. 2014">1</a>这篇是Yoon Kim在2014年(EMNLP2014)的文章, 应该是比较经典的做法. 其框架如下</p>
+<p><img src="/2017/09/25/CNN-in-NLP/kim2014.png" alt="Kim2014"></p>
+<p>输入矩阵的每行是对应词的embedding, 用一个宽度为embedding维度的filter来做卷积, 这也是文本和图像做卷积不同的地方, 也就是文本只关注时间序列上的卷积,不关注单词特征各维度的关系. 文章中选用了高分别为3,4,5三种filter, 每个filter要做100个feature maps, 也就是经过卷积层后得到300个特征向量, 对这些向量分别做max-over-time pooling就得到一个300*1的向量, 然后将这个向量传入全连接层经过softmax就能得到分类的概率结果.<br>在训练上本文使用了SGD, 并对倒数第二层做了dropout.<br>这个模型非常的简洁, 直观, 没有太多的trick, 很有借鉴意义.<br>在这篇文章中, 作者在七个文本分类任务的数据集上做了实验, 结果表明这个很简单的框架就能够和其他复杂的模型相匹敌. 这证明word2vec的universal embedding对于文本分类任务很有用.<br>此外作者还研究了所谓non-static representation. 也就是对于embedding不只是作为输入, 而是作为可以训练的参数. 这样对于不同的任务, embedding会做出相应的调整, 事实上static和non-static的表示是作为不同channel输入的, 最终的结果显示non-static representation会带来一点性能的提升.<br>最后作者在和别人的工作<a href="Kalchbrenner et al., 2014">2</a>对比后, 认为自己的结果比别人差不多的cnn更好的原因是用了更多不同大小的filter和更多的feature map<br>在Kalchbrenner的论文[2]里提出的Dynamic Convolutional Neural Network (DCNN), 使用了两层卷积, 并且采用了动态的k-max pooling.  </p>
+<p><img src="/2017/09/25/CNN-in-NLP/Kalchbrenner2014.png" alt="Kalchbrenner2014"></p>
+<p>其实这个框架和Kim的框架在大多数任务上都互有胜负, 只是模型不够简洁. 而且filter size只用了一种.</p>
 <hr>
 <h2 id="Using-one-hot-representation"><a href="#Using-one-hot-representation" class="headerlink" title="Using one-hot representation"></a>Using one-hot representation</h2><p>在<a href="Johnson &amp; Zhang, 2015a">3</a>这篇论文中, 作者没有使用事先训练好的embedding作为输入, 而是就用高维的one-hot vectors. 这么做的动机就是想看看,CNN在没有引入embedding这种相当于外部资源的情况下, 性能如何, 同时也可以验证引入embedding的必要性. 毕竟CNN在计算机视觉领域就是直接对图像原始表示进行处理的.<br>这篇文章提出两种模型, 第一种seq-CNN将词汇表V中的每个词当做类似于RGB的channel, 只不过只能取0或1. 对于窗口为p的一个region(比如p=2是两个相邻的词),就得到一个p|V|的向量. 但是如果|V|太大的话, 那这个模型的参数就太多了. 所以在第二种模型bow-CNN中, 采用了类似于BOW的做法, 即一个region用BOW来表示, 那么就从P|V|变成了|V|的向量, 然后做卷积. Pooling层使用dynamic pooling, 比如把向量按位置划分几个部分, 每个部分单独做pooling, 这样可以获得位置信息.<br>在实验方面, 使用了IMDB, Elec: electronics product reviews, RCV1: topic categorization三个数据集, 前两个是关于sentiment, 后面一个是篇章级别的关于topic的分类. 对于sentiment<br>分类seq-CNN更好, 对于topic分类bow-CNN更好. 不过从文章的分析来看, 并不是因为这两种模型的差异. 而是因为, 在模型选择时, topic分类需要选择更大的region size, 而bow-CNN因为有更少的参数所以更适合于大的region size.<br>虽然本文方法超过了这些数据集上的state-of-art, 不过比较奇怪的事, 文中的base-line竟然是bag-of-n-grams的SVM. 在提到之前的CNN做法时, 文章说它们自己实现的Kim[1]的模型比他们的模型慢了几倍, 而且效果不好(没有给出具体数字), 从它们的描述来看, 我觉得作者可能对Yoon Kim的模型有些误解. 至于DCNN<a href="Kalchbrenner et al., 2014">2</a>, 文章给出了实验结果, 不如本文模型.<br>不过值得注意的是本文所采用的数据集都是长文本, 从短文本角度来讲, 还是使用了Embedding的方法效果更好, 至于如果是长文本和topic相关的, 那么可以尝试本文方法不用embedding. 尽管我个人认为本文的实验设置并没有验证embedding引入的必要性与否, 但是也证明了直接使用one-hot也可以做出很好的效果.</p>
 <p>Rie Johnson &amp; Tong Zhang后来又拓展了他们的模型发了新的文章<a href="Johnson &amp; Zhang, 2015b">4</a>. 这篇文章的主要工作是”direct learning of embeddings of text regions”:直接去学习卷积窗口内区域的表示. 既不是用BOW也不是用general的embedding(word2vec). 这种表示比word2vec更和任务相关.<br>具体来说这篇文章使用两个CNN, 一个用来学习区域的embedding, 另一个用来预测分类. 在学习embedding时, 优化的目标可以有两种策略, 一种是无监督的根据上下文来学习(类似于word2vec), 另一种是有监督的, 也就是用labeld的数据先训练了一个CNN, 再将中间的一层作为这个区域的表示.<br>本文实验和上一篇论文相同, 并且新的模型性能超越了之前的模型. 此外, 文章还花了相当的篇幅和Yoon Kim[1]的模型进行了对比, 不仅在实验结果上超过了Yoon Kim的模型, 而且作者认为, 使用word2vec丢失了one-hot表示的很多信息, 而且word2vec的embedding未必和任务相关, 且word2vec的embedding都是以词为单位的.<br>从这篇论文来看, 的确给人带来了除了直接使用word2vec和BOW以外的第三种思路, 也就是根据具体任务做embedding. 尽管Rie Johnson &amp; Tong Zhang的实验证明这种做法效果很好, 但是如果不使用外部的大量数据能否训练出好的embedding是值得怀疑的, 尤其是对于小数据集而言. 关于NLP网络的输入表示还需要更多验证和思考.</p>
@@ -408,10 +412,6 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/09/25/test/" rel="prev" title="test">
-                test <i class="fa fa-chevron-right"></i>
-              </a>
-            
           </div>
         </div>
       
@@ -482,7 +482,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-count">2</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
