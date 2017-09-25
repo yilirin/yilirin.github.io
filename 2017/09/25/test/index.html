@@ -93,16 +93,16 @@
 
 
 
-<meta name="description" content="NLP">
-<meta property="og:type" content="website">
-<meta property="og:title" content="tags">
-<meta property="og:url" content="http://yoursite.com/tags/index.html">
+<meta name="description" content="One-hot Representation one 1 and lots of zeroes 维度太大｜V｜，不易计算。 This word representation does not give us directly any notion of similarity.  SVD based method ［ ］Probabilistic Language Model: $P(w_t|w_{">
+<meta property="og:type" content="article">
+<meta property="og:title" content="test">
+<meta property="og:url" content="http://yoursite.com/2017/09/25/test/index.html">
 <meta property="og:site_name" content="Yili blog">
-<meta property="og:description" content="NLP">
-<meta property="og:updated_time" content="2017-06-07T10:31:09.000Z">
+<meta property="og:description" content="One-hot Representation one 1 and lots of zeroes 维度太大｜V｜，不易计算。 This word representation does not give us directly any notion of similarity.  SVD based method ［ ］Probabilistic Language Model: $P(w_t|w_{">
+<meta property="og:updated_time" content="2017-09-25T03:34:46.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="tags">
-<meta name="twitter:description" content="NLP">
+<meta name="twitter:title" content="test">
+<meta name="twitter:description" content="One-hot Representation one 1 and lots of zeroes 维度太大｜V｜，不易计算。 This word representation does not give us directly any notion of similarity.  SVD based method ［ ］Probabilistic Language Model: $P(w_t|w_{">
 
 
 
@@ -130,13 +130,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/tags/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/09/25/test/"/>
 
 
 
 
 
-  <title>tags | Yili blog</title>
+  <title>test | Yili blog</title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -247,25 +247,157 @@
             
 
   <div id="posts" class="posts-expand">
-  <header class="post-header">
+    
 
-	<h1 class="post-title" itemprop="name headline">tags</h1>
+  
 
+  
+  
+  
 
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/09/25/test/">
 
-</header>
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="一粒">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://avatars0.githubusercontent.com/u/12670351?v=3&u=fc0a28b345878bb26677b468ba2cb5011742e02f&s=400">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Yili blog">
+    </span>
 
     
-    
-      <div class="tag-cloud">
-        <div class="tag-cloud-title">
-            目前共计 2 个标签
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">test</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-09-25T11:34:18+08:00">
+                2017-09-25
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
         </div>
-        <div class="tag-cloud-tags">
-          <a href="/tags/DL/" style="font-size: 12px; color: #ccc">DL</a> <a href="/tags/NLP/" style="font-size: 30px; color: #111">NLP</a>
-        </div>
-      </div>
+      </header>
     
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="One-hot-Representation"><a href="#One-hot-Representation" class="headerlink" title="One-hot Representation"></a>One-hot Representation</h1><ol>
+<li>one 1 and lots of zeroes</li>
+<li>维度太大｜V｜，不易计算。</li>
+<li>This word representation does not give us directly any notion of similarity.</li>
+</ol>
+<h2 id="SVD-based-method-［-］"><a href="#SVD-based-method-［-］" class="headerlink" title="SVD based method ［ ］"></a>SVD based method ［ ］</h2><h2 id="Probabilistic-Language-Model-P-w-t-w-1-t-1"><a href="#Probabilistic-Language-Model-P-w-t-w-1-t-1" class="headerlink" title="Probabilistic Language Model: $P(w_t|w_{1:t-1})$"></a>Probabilistic Language Model: $P(w_t|w_{1:t-1})$</h2><ol>
+<li>问题：<br>Given a sequence of letters, what is the likelihood of the next letter?</li>
+<li>统计语言模型:<ul>
+<li>“统计语言模型把语言(词的序列)看 作一个随机事件,并赋予相应的概率来描述其属于某种语言集合 的可能性。给定一个词汇集合 V ,对于一个由 V 中的词构成的序 列S = ⟨w1, · · · , wT ⟩ ∈ Vn,统计语言模型赋予这个序列一个概率 P (S ),来衡量 S 符合自然语言的语法和语义规则的置信度。”</li>
+</ul>
+</li>
+<li>语言模型的两个基本功能是:<ul>
+<li>判断一段文本是否符合一种语言的语法和语义规则;</li>
+<li>生成符合一种语言语法或语义规则的文本。</li>
+</ul>
+</li>
+<li>公式：<br>$$</li>
+</ol>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/09/25/CNN-in-NLP/" rel="next" title="CNN in NLP">
+                <i class="fa fa-chevron-left"></i> CNN in NLP
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
   </div>
 
 
@@ -297,8 +429,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="https://avatars0.githubusercontent.com/u/12670351?v=3&u=fc0a28b345878bb26677b468ba2cb5011742e02f&s=400"
@@ -371,6 +512,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#One-hot-Representation"><span class="nav-number">1.</span> <span class="nav-text">One-hot Representation</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#SVD-based-method-［-］"><span class="nav-number">1.1.</span> <span class="nav-text">SVD based method ［ ］</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Probabilistic-Language-Model-P-w-t-w-1-t-1"><span class="nav-number">1.2.</span> <span class="nav-text">Probabilistic Language Model: $P(w_t|w_{1:t-1})$</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -484,10 +641,10 @@
   
 
   
-    <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
 <script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
 
-  
+
 
   
 
